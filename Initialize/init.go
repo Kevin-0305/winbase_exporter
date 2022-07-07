@@ -1,4 +1,4 @@
-package inita
+package Initialize
 
 import (
 	"winbase_exporter/global"

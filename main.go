@@ -2,9 +2,9 @@ package main
 
 import (
 	"net/http"
+	"winbase_exporter/Initialize"
 	"winbase_exporter/collector"
 	"winbase_exporter/global"
-	"winbase_exporter/inita"
 	"winbase_exporter/scrape"
 	"winbase_exporter/scrape/scrapeImpl"
 
@@ -21,7 +21,7 @@ func init() {
 }
 func main() {
 	// stat.GPUStatTest()
-	inita.InitStat()
+	Initialize.InitStat()
 	enabledScrapers := []scrape.Scraper{scrapeImpl.MyScraperOne{}, scrape.HostScrape{}, scrape.CpuScrape{}, scrape.GpuScrape{}, scrape.DiskScrape{}, scrape.MemoryScrape{}}
 	handlerFunc := newHandler(collector.NewMetrics(), enabledScrapers)
 	http.Handle("/metrics", promhttp.InstrumentMetricHandler(prometheus.DefaultRegisterer, handlerFunc))
